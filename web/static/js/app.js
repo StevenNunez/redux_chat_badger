@@ -1,16 +1,26 @@
 import { createStore } from 'redux'
 
-function beef(state=""){ 
-  return `${state} BEEEF`
+const counter = (state=0, action) => {
+  switch (action.type) {
+    case "INCREMENT":
+      return state + 1
+    case "DECREMENT":
+      return state - 1
+    default:
+      return state
+  }
 }
-const store = createStore(beef)
+
+const store = createStore(counter)
+/////// Checking our work
+
 store.subscribe(() => {
-  console.log("This is being called in a subscribe")
-  console.log("The current state is ", store.getState())
+  console.log(store.getState())
+  console.log("State Weeeeeee")
 })
 
-let action = {type: "LALALALA"}
-store.dispatch(action)
-store.dispatch(action)
-store.dispatch(action)
-store.dispatch(action)
+store.dispatch({type: "INCREMENT"})
+store.dispatch({type: "INCREMENT"})
+store.dispatch({type: "DECREMENT"})
+store.dispatch({type: "BANANA"})
+store.dispatch({type: "DECREMENT"})
