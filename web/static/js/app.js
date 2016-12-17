@@ -70,7 +70,7 @@ const decrement = () => {
 }
 
 const getFact = (number) => {
-  store.dispatch((dispatch, getState()) => {
+  store.dispatch((dispatch, getState) => {
     let { currentNumber } = getState()
     axios.get(`http://numbersapi.com/${currentNumber}/math`).then(({data}) => {
       dispatch({type: "NEW_FACT", payload: data})
